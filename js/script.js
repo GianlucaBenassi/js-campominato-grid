@@ -14,6 +14,7 @@ btnPlay.addEventListener('click', function(){
 
     startP.classList.add('d-none');
     boxContainer.classList.remove('d-none');
+    gameResult.classList.add('d-none')
 
     switch(difficulty) {
         case 1:
@@ -66,16 +67,26 @@ btnPlay.addEventListener('click', function(){
                     }
                 }
 
+                //display game result
                 boxContainer.classList.add('no-click');
+                gameResult.classList.remove('d-none')
+                gameResult.innerHTML = 'Hai perso! Punteggio: ' + clickCounter;
 
             } else {
 
+                //if box not clicked add class and increase counter
                 if (!this.classList.contains('clicked')) {
 
                     this.classList.add('clicked')
                     clickCounter++;
-                    console.log(clickCounter + ' ' + i);
 
+                }
+
+                //if clicked all boxes
+                if (blockN - minePos.length == clickCounter) {
+                    boxContainer.classList.add('no-click');
+                    gameResult.classList.remove('d-none')
+                    gameResult.innerHTML = 'Hai vinto! Punteggio: ' + clickCounter;
                 }
 
             }
