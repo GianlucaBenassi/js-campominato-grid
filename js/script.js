@@ -27,6 +27,7 @@ btnPlay.addEventListener('click', function(){
 
     }
 
+
     blockGenerator(diffClass, blockN);
 
     console.log(randomMine(blockN));
@@ -44,6 +45,7 @@ btnPlay.addEventListener('click', function(){
 const blockGenerator = (diff, num) => {
 
     const boxContainer = document.querySelector('main .container');
+    let clickCounter = 0;
 
     // clear container befor add blocks
     boxContainer.innerHTML = '';
@@ -57,7 +59,15 @@ const blockGenerator = (diff, num) => {
 
         //add click event to the block
         divBox.addEventListener('click', function(){
-            this.classList.add('clicked')
+
+            if (!this.classList.contains('clicked')) {
+
+                this.classList.add('clicked')
+                clickCounter++;
+                console.log(clickCounter);
+
+            }
+
         });
 
     }
@@ -87,7 +97,7 @@ const randomMine = (max) => {
         }
 
         //if not exist add the number and increase i
-        if (check == false) {
+        if (!check) {
             minePosition.push(rndNum);
             i++;
         }
