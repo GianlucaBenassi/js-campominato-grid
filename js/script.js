@@ -29,6 +29,8 @@ btnPlay.addEventListener('click', function(){
 
     blockGenerator(diffClass, blockN);
 
+    console.log(randomMine(blockN));
+
 });
 
 
@@ -59,5 +61,39 @@ const blockGenerator = (diff, num) => {
         });
 
     }
+
+}
+
+
+//generate the position of mines
+const randomMine = (max) => {
+
+    const minePosition = [];
+    let i = 0;
+
+    while (i < 14) {
+        //generate random number
+        const rndNum = Math.floor(Math.random() * max ) + 1;
+
+        //check if the number exist in the array
+        let check = false;
+
+        for (let k = 0; k < minePosition.length; k++) {
+
+            if (rndNum == minePosition[k]) {
+                check = true;
+            }
+
+        }
+
+        //if not exist add the number and increase i
+        if (check == false) {
+            minePosition.push(rndNum);
+            i++;
+        }
+
+    }
+
+    return minePosition.sort((a, b) => a - b)
 
 }
