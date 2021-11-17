@@ -64,6 +64,10 @@ main .container {
     background-color: lightgreen;
 }
 
+.box.mine {
+    background-color: red;
+}
+
 
 /* ***** footer ***** */
 

@@ -30,11 +30,7 @@ btnPlay.addEventListener('click', function(){
 
     blockGenerator(diffClass, blockN);
 
-    console.log(randomMine(blockN));
-
 });
-
-
 
 
 
@@ -47,10 +43,15 @@ const blockGenerator = (diff, num) => {
     const boxContainer = document.querySelector('main .container');
     let clickCounter = 0;
 
+    //determinate the position of mines
+    const minePos = randomMine(num);
+    console.log(minePos);
+
     // clear container befor add blocks
     boxContainer.innerHTML = '';
 
     for (let i = 1; i <= num; i++) {
+
         //create block
         const divBox = document.createElement('div');
         divBox.classList.add('box', diff);
@@ -60,12 +61,15 @@ const blockGenerator = (diff, num) => {
         //add click event to the block
         divBox.addEventListener('click', function(){
 
-            if (!this.classList.contains('clicked')) {
-
-                this.classList.add('clicked')
-                clickCounter++;
-                console.log(clickCounter);
-
+            // check if is a mine
+            if (checkArray(minePos, i)) {
+                this.classList.add('mine');
+            } else {
+                if (!this.classList.contains('clicked')) {
+                    this.classList.add('clicked')
+                    clickCounter++;
+                    console.log(clickCounter + ' ' + i);
+                }
             }
 
         });
@@ -75,7 +79,7 @@ const blockGenerator = (diff, num) => {
 }
 
 
-//generate the position of mines
+// generate the position of mines
 const randomMine = (max) => {
 
     const minePosition = [];
@@ -105,5 +109,19 @@ const randomMine = (max) => {
     }
 
     return minePosition.sort((a, b) => a - b)
+
+}
+
+
+// check number in array
+const checkArray = (arr, num) => {
+    
+    for (let i = 0; i < arr.length; i++) {
+        if (num == arr[i]) {
+            return true
+        }
+    }
+
+    return false
 
 }
