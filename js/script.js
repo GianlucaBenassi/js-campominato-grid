@@ -6,8 +6,14 @@ const btnPlay = document.getElementById('play');
 btnPlay.addEventListener('click', function(){
     
     const difficulty = parseInt(document.getElementById('difficulty').value);
+    const boxContainer = document.querySelector('main .container');
+    const startP = document.getElementById('start-text');
+    const gameResult = document.getElementById('game-result');
     let blockN;
     let diffClass;
+
+    startP.classList.add('d-none');
+    boxContainer.classList.remove('d-none');
 
     switch(difficulty) {
         case 1:
@@ -27,35 +33,23 @@ btnPlay.addEventListener('click', function(){
 
     }
 
-
-    blockGenerator(diffClass, blockN);
-
-});
-
-
-
-
-// ***** functions *****
-
-// generate blocks
-const blockGenerator = (diff, num) => {
-
-    const boxContainer = document.querySelector('main .container');
-    let clickCounter = 0;
-
+    
     //determinate the position of mines
-    const minePos = randomMine(num);
+    const minePos = randomMine(blockN);
     console.log(minePos);
-
+    
     // clear container befor add blocks
     boxContainer.innerHTML = '';
     boxContainer.classList.remove('no-click')
 
-    for (let i = 1; i <= num; i++) {
+    //declare a successfull click counter
+    let clickCounter = 0;
+
+    for (let i = 1; i <= blockN; i++) {
 
         //create block
         const divBox = document.createElement('div');
-        divBox.classList.add('box', diff);
+        divBox.classList.add('box', diffClass);
         divBox.innerText = i;
         boxContainer.appendChild(divBox);
 
@@ -66,7 +60,7 @@ const blockGenerator = (diff, num) => {
             if (checkArray(minePos, i)) {
 
                 //activate all mines
-                for (let k = 1; k <= num; k++) {
+                for (let k = 1; k <= blockN; k++) {
                     if (checkArray(minePos, k)) {
                         boxContainer.children[k - 1].classList.add('mine');
                     }
@@ -91,9 +85,14 @@ const blockGenerator = (diff, num) => {
         });
 
     }
+    
 
-}
+});
 
+
+
+
+// ***** functions *****
 
 // generate the position of mines
 const randomMine = (max) => {

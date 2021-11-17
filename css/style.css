@@ -10,6 +10,9 @@
     pointer-events: none;
 }
 
+.d-none {
+    display: none !important;
+}
 
 /* ***** header ***** */
 
@@ -30,6 +33,11 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+main p {
+    color: white;
+    font-size: 30px;
 }
 
 main .container {
