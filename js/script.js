@@ -49,6 +49,7 @@ const blockGenerator = (diff, num) => {
 
     // clear container befor add blocks
     boxContainer.innerHTML = '';
+    boxContainer.classList.remove('no-click')
 
     for (let i = 1; i <= num; i++) {
 
@@ -63,14 +64,29 @@ const blockGenerator = (diff, num) => {
 
             // check if is a mine
             if (checkArray(minePos, i)) {
-                this.classList.add('mine');
+
+                //activate all mines
+                for (let k = 1; k <= num; k++) {
+                    if (checkArray(minePos, k)) {
+                        boxContainer.children[k - 1].classList.add('mine');
+                    }
+                }
+
+                boxContainer.classList.add('no-click');
+
             } else {
+
                 if (!this.classList.contains('clicked')) {
+
                     this.classList.add('clicked')
                     clickCounter++;
                     console.log(clickCounter + ' ' + i);
+
                 }
+
             }
+
+
 
         });
 
