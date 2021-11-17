@@ -47,10 +47,17 @@ const blockGenerator = (diff, num) => {
     boxContainer.innerHTML = '';
 
     for (let i = 1; i <= num; i++) {
+        //create block
         const divBox = document.createElement('div');
         divBox.classList.add('box', diff);
         divBox.innerText = i;
         boxContainer.appendChild(divBox);
+
+        //add click event to the block
+        divBox.addEventListener('click', function(){
+            this.classList.add('clicked')
+        });
+
     }
 
 }
