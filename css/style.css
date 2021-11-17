@@ -19,6 +19,49 @@ header {
 
 /* ***** main ****** */
 
+main {
+    background-color: lightblue;
+    height: calc(100vh - 160px);
+    padding: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main .container {
+    width: 600px;
+    height: 600px;
+    border: 2px solid white;
+
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.box {
+    border: 1px solid white;
+}
+
+.box.easy {
+    width: calc(100% / 10);
+    height: calc(100% / 10);
+}
+
+.box.medium {
+    width: calc(100% / 9);
+    height: calc(100% / 9);
+}
+
+.box.hard {
+    width: calc(100% / 7);
+    height: calc(100% / 7);
+}
 
 
 /* ***** footer ***** */
+
+footer {
+    height: 80px;
+    line-height: 80px;
+    padding-left: 100px;
+}
